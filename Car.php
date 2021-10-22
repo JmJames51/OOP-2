@@ -1,134 +1,48 @@
 <?php
+require_once 'Vehicle.php';
 
-class Car 
+class Car extends Vehicle
 {
-    private string $color;
+    public const ALLOWED_ENERGIES=[
+        'fuel',
+        'electric',
+    ];
 
-    private int $currentSpeed;
+    private string $energy;
+    private int $energyLevel;
 
-    private int $nbSeats = 5;
-
-    private int $nbWheels = 4;
-
-    private string $energy; 
-    
-
-    public function __construct(string $color, int $nbWheels, string $energy)
-    {
-    $this->color =$color;
-    $this->nbWheels=$nbWheels;
-    $this->energy=$energy;
-
-    }
-
-    public function forward(): string
-    {
-        $this->currentSpeed = 90;
-    
-        return "Let's go !";
-    }
-
-    public function brake(): string
-    {
-        $sentence = "";
-        while ($this->currentSpeed > 0) {
-            $this->currentSpeed--;
-            $sentence .= "Brake !!!";
+        public function __construct(string $color ,int $nbSeats, string $energy )
+        {
+            parent::__construct($color , $nbSeats);
+            $this->energy= $energy;
         }
-        $sentence .= "I'm stopped !";
-        return $sentence;
-    }
-    public function start(): string
-{
-    $this->currentSpeed = 0;
-    
-    return ""; 
-}
+
 
     /**
-     * Get the value of color
+     * Get the value of energyLevel
      */ 
-    public function getColor()
+    public function getEnergyLevel(): int
     {
-        return $this->color;
+        return $this->energyLevel;
     }
 
     /**
-     * Set the value of color
+     * Set the value of energyLevel
      *
      * @return  self
      */ 
-    public function setColor($color)
+    public function setEnergyLevel(int $energyLevel):void 
     {
-        $this->color = $color;
+        
+        $this->energyLevel = $energyLevel;
 
-        return $this;
-    }
-
-    /**
-     * Get the value of currentSpeed
-     */ 
-    public function getCurrentSpeed()
-    {
-        return $this->currentSpeed;
-    }
-
-    /**
-     * Set the value of currentSpeed
-     *
-     * @return  self
-     */ 
-    public function setCurrentSpeed($currentSpeed)
-    {
-        $this->currentSpeed = $currentSpeed;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of nbSeats
-     */ 
-    public function getNbSeats()
-    {
-        return $this->nbSeats;
-    }
-
-    /**
-     * Set the value of nbSeats
-     *
-     * @return  self
-     */ 
-    public function setNbSeats($nbSeats)
-    {
-        $this->nbSeats = $nbSeats;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of nbWheels
-     */ 
-    public function getNbWheels()
-    {
-        return $this->nbWheels;
-    }
-
-    /**
-     * Set the value of nbWheels
-     *
-     * @return  self
-     */ 
-    public function setNbWheels($nbWheels)
-    {
-        $this->nbWheels = $nbWheels;
-
-        return $this;
+       
     }
 
     /**
      * Get the value of energy
      */ 
-    public function getEnergy()
+    public function getEnergy():string 
     {
         return $this->energy;
     }
@@ -138,11 +52,13 @@ class Car
      *
      * @return  self
      */ 
-    public function setEnergy($energy)
+    public function setEnergy(string $energy): Car 
     {
+        if(in_array($energy, self::ALLOWED_ENERGIES)){
         $this->energy = $energy;
-
+        }
         return $this;
+     
     }
 }
 

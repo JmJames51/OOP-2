@@ -1,25 +1,15 @@
 <?php
+require_once 'Vehicle.php';
 require 'bicycle.php';
 require 'Car.php';
-$bike =new bicycle();
+require_once 'Truck.php';
 
-$bike->setColor = 'blue';
-$bike-> setCurrentSpeed(0);
+$truck= new Truck('red', 3, 'electric', 900, 902);
 
-echo $bike->forward();
-echo  'Vitesse du vélo : ' . $bike->getCurrentSpeed() . 'Km/h';
-echo $bike->brake();
-echo 'Vitesse du vélo : ' . $bike->getCurrentSpeed() . 'Km/h' ;
-echo $bike->brake();
+echo $truck->forward();
+echo ' Vitesse du  camion : ' . $truck->getCurrentSpeed() . ' km/h' . '</br>';
+echo $truck->brake();
+echo ' Vitesse du  camion : ' . $truck->getCurrentSpeed() . ' km/h' . '</br>';
 
-$car= new Car('red', 4, 'diesel');
-
-echo $car->start();
-echo '<br> Vitesse de la voiture: ' . $car->getCurrentSpeed() . 'Km/h' . '<br>';
-echo $car->forward();
-echo '<br> Vitesse de la voiture : ' . $car->getCurrentSpeed() . ' km/h' . '<br>';
-echo $car->brake();
-echo '<br> Vitesse de la voiture : ' . $car->getCurrentSpeed() . ' km/h' . '<br>';
-
-
+echo $truck->loadControl();
 ?>
