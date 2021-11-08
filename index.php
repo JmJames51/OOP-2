@@ -4,6 +4,7 @@ require 'bicycle.php';
 require 'Car.php';
 require_once 'Truck.php';
 
+
 $truck= new Truck('red', 3, 'electric', 900, 902);
 
 echo $truck->forward();
